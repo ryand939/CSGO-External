@@ -31,6 +31,9 @@
 			this.lblMain = new System.Windows.Forms.Label();
 			this.txtFOV = new System.Windows.Forms.TextBox();
 			this.pnlVis = new System.Windows.Forms.Panel();
+			this.lblFlashRemoval = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.CheckRadar = new System.Windows.Forms.CheckBox();
 			this.btnDownFOV = new System.Windows.Forms.Button();
 			this.btnUpFOV = new System.Windows.Forms.Button();
 			this.lblVisuals = new System.Windows.Forms.Label();
@@ -38,14 +41,12 @@
 			this.pnlAim = new System.Windows.Forms.Panel();
 			this.lblMisc = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.checkBhop = new System.Windows.Forms.CheckBox();
 			this.btnQuit = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
-			this.checkBhop = new System.Windows.Forms.CheckBox();
 			this.lblStatus = new System.Windows.Forms.Label();
-			this.CheckRadar = new System.Windows.Forms.CheckBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.pnlVis.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -62,6 +63,7 @@
 			this.lblMain.Text = "DAERWARE EXTERNAL ";
 			this.lblMain.UseCompatibleTextRendering = true;
 			this.lblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.label1_Paint);
+			this.lblMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// txtFOV
 			// 
@@ -75,13 +77,16 @@
 			this.txtFOV.Name = "txtFOV";
 			this.txtFOV.Size = new System.Drawing.Size(37, 22);
 			this.txtFOV.TabIndex = 6;
-			this.txtFOV.Text = "90";
+			this.txtFOV.Text = "106";
 			this.txtFOV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.txtFOV.TextChanged += new System.EventHandler(this.txtFOV_TextChanged);
+			this.txtFOV.MouseEnter += new System.EventHandler(this.btnDownFOV_MouseEnter);
+			this.txtFOV.MouseLeave += new System.EventHandler(this.btnDownFOV_MouseLeave);
 			// 
 			// pnlVis
 			// 
 			this.pnlVis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlVis.Controls.Add(this.lblFlashRemoval);
 			this.pnlVis.Controls.Add(this.txtFOV);
 			this.pnlVis.Controls.Add(this.label1);
 			this.pnlVis.Controls.Add(this.CheckRadar);
@@ -92,6 +97,61 @@
 			this.pnlVis.Size = new System.Drawing.Size(247, 100);
 			this.pnlVis.TabIndex = 7;
 			this.pnlVis.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVis_Paint);
+			this.pnlVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// lblFlashRemoval
+			// 
+			this.lblFlashRemoval.AutoSize = true;
+			this.lblFlashRemoval.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.lblFlashRemoval.FlatAppearance.BorderSize = 3;
+			this.lblFlashRemoval.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.lblFlashRemoval.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.lblFlashRemoval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblFlashRemoval.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.lblFlashRemoval.Location = new System.Drawing.Point(9, 36);
+			this.lblFlashRemoval.Name = "lblFlashRemoval";
+			this.lblFlashRemoval.Size = new System.Drawing.Size(101, 19);
+			this.lblFlashRemoval.TabIndex = 17;
+			this.lblFlashRemoval.Text = "Remove Flash";
+			this.lblFlashRemoval.UseCompatibleTextRendering = true;
+			this.lblFlashRemoval.UseVisualStyleBackColor = true;
+			this.lblFlashRemoval.MouseEnter += new System.EventHandler(this.lblFlashRemoval_MouseEnter);
+			this.lblFlashRemoval.MouseLeave += new System.EventHandler(this.lblFlashRemoval_MouseLeave);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.label1.Location = new System.Drawing.Point(35, 58);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(27, 18);
+			this.label1.TabIndex = 16;
+			this.label1.Text = "FOV";
+			this.label1.UseCompatibleTextRendering = true;
+			this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			this.label1.MouseEnter += new System.EventHandler(this.btnDownFOV_MouseEnter);
+			this.label1.MouseLeave += new System.EventHandler(this.btnDownFOV_MouseLeave);
+			// 
+			// CheckRadar
+			// 
+			this.CheckRadar.AutoSize = true;
+			this.CheckRadar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.CheckRadar.FlatAppearance.BorderSize = 3;
+			this.CheckRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.CheckRadar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.CheckRadar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.CheckRadar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.CheckRadar.Location = new System.Drawing.Point(9, 16);
+			this.CheckRadar.Name = "CheckRadar";
+			this.CheckRadar.Size = new System.Drawing.Size(97, 19);
+			this.CheckRadar.TabIndex = 15;
+			this.CheckRadar.Text = "Reveal Radar";
+			this.CheckRadar.UseCompatibleTextRendering = true;
+			this.CheckRadar.UseVisualStyleBackColor = true;
+			this.CheckRadar.CheckedChanged += new System.EventHandler(this.CheckRadar_CheckedChanged);
+			this.CheckRadar.MouseEnter += new System.EventHandler(this.CheckRadar_MouseEnter);
+			this.CheckRadar.MouseLeave += new System.EventHandler(this.CheckRadar_MouseLeave);
 			// 
 			// btnDownFOV
 			// 
@@ -109,6 +169,8 @@
 			this.btnDownFOV.UseVisualStyleBackColor = false;
 			this.btnDownFOV.Click += new System.EventHandler(this.btnDownFOV_Click);
 			this.btnDownFOV.Paint += new System.Windows.Forms.PaintEventHandler(this.btnDownFOV_Paint);
+			this.btnDownFOV.MouseEnter += new System.EventHandler(this.btnDownFOV_MouseEnter);
+			this.btnDownFOV.MouseLeave += new System.EventHandler(this.btnDownFOV_MouseLeave);
 			// 
 			// btnUpFOV
 			// 
@@ -126,6 +188,8 @@
 			this.btnUpFOV.UseVisualStyleBackColor = false;
 			this.btnUpFOV.Click += new System.EventHandler(this.btnUpFOV_Click);
 			this.btnUpFOV.Paint += new System.Windows.Forms.PaintEventHandler(this.btnUpFOV_Paint);
+			this.btnUpFOV.MouseEnter += new System.EventHandler(this.btnDownFOV_MouseEnter);
+			this.btnUpFOV.MouseLeave += new System.EventHandler(this.btnDownFOV_MouseLeave);
 			// 
 			// lblVisuals
 			// 
@@ -140,6 +204,7 @@
 			this.lblVisuals.Text = "Visual";
 			this.lblVisuals.UseCompatibleTextRendering = true;
 			this.lblVisuals.Paint += new System.Windows.Forms.PaintEventHandler(this.lblVisuals_Paint);
+			this.lblVisuals.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// lblAim
 			// 
@@ -153,6 +218,7 @@
 			this.lblAim.Text = "Aim";
 			this.lblAim.UseCompatibleTextRendering = true;
 			this.lblAim.Paint += new System.Windows.Forms.PaintEventHandler(this.lblAim_Paint);
+			this.lblAim.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// pnlAim
 			// 
@@ -162,6 +228,7 @@
 			this.pnlAim.Size = new System.Drawing.Size(248, 100);
 			this.pnlAim.TabIndex = 9;
 			this.pnlAim.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAim_Paint);
+			this.pnlAim.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// lblMisc
 			// 
@@ -176,6 +243,7 @@
 			this.lblMisc.Text = "Misc";
 			this.lblMisc.UseCompatibleTextRendering = true;
 			this.lblMisc.Paint += new System.Windows.Forms.PaintEventHandler(this.lblMisc_Paint);
+			this.lblMisc.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// panel1
 			// 
@@ -186,44 +254,7 @@
 			this.panel1.Size = new System.Drawing.Size(248, 76);
 			this.panel1.TabIndex = 11;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-			// 
-			// btnQuit
-			// 
-			this.btnQuit.BackColor = System.Drawing.Color.DimGray;
-			this.btnQuit.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-			this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnQuit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnQuit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.btnQuit.Image = global::DWext.Properties.Resources.btnGrad;
-			this.btnQuit.Location = new System.Drawing.Point(217, 9);
-			this.btnQuit.Name = "btnQuit";
-			this.btnQuit.Size = new System.Drawing.Size(45, 23);
-			this.btnQuit.TabIndex = 1;
-			this.btnQuit.Text = "Quit";
-			this.btnQuit.UseVisualStyleBackColor = false;
-			this.btnQuit.Click += new System.EventHandler(this.button1_Click);
-			this.btnQuit.Paint += new System.Windows.Forms.PaintEventHandler(this.btnQuit_Paint);
-			// 
-			// panel2
-			// 
-			this.panel2.Location = new System.Drawing.Point(24, 144);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(19, 16);
-			this.panel2.TabIndex = 7;
-			// 
-			// panel3
-			// 
-			this.panel3.Location = new System.Drawing.Point(23, 31);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(19, 16);
-			this.panel3.TabIndex = 8;
-			// 
-			// panel4
-			// 
-			this.panel4.Location = new System.Drawing.Point(22, 251);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(21, 11);
-			this.panel4.TabIndex = 0;
+			this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// checkBhop
 			// 
@@ -246,45 +277,57 @@
 			this.checkBhop.MouseEnter += new System.EventHandler(this.checkBhop_MouseEnter);
 			this.checkBhop.MouseLeave += new System.EventHandler(this.checkBhop_MouseLeave);
 			// 
+			// btnQuit
+			// 
+			this.btnQuit.BackColor = System.Drawing.Color.DimGray;
+			this.btnQuit.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+			this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnQuit.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnQuit.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.btnQuit.Image = global::DWext.Properties.Resources.btnGrad;
+			this.btnQuit.Location = new System.Drawing.Point(215, 9);
+			this.btnQuit.Name = "btnQuit";
+			this.btnQuit.Size = new System.Drawing.Size(45, 23);
+			this.btnQuit.TabIndex = 1;
+			this.btnQuit.Text = "Quit";
+			this.btnQuit.UseVisualStyleBackColor = false;
+			this.btnQuit.Click += new System.EventHandler(this.button1_Click);
+			this.btnQuit.Paint += new System.Windows.Forms.PaintEventHandler(this.btnQuit_Paint);
+			// 
+			// panel2
+			// 
+			this.panel2.Location = new System.Drawing.Point(24, 144);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(19, 16);
+			this.panel2.TabIndex = 7;
+			this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// panel3
+			// 
+			this.panel3.Location = new System.Drawing.Point(23, 31);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(19, 16);
+			this.panel3.TabIndex = 8;
+			this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// panel4
+			// 
+			this.panel4.Location = new System.Drawing.Point(22, 251);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(21, 11);
+			this.panel4.TabIndex = 0;
+			this.panel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
 			// lblStatus
 			// 
 			this.lblStatus.AutoSize = true;
-			this.lblStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblStatus.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblStatus.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.lblStatus.Location = new System.Drawing.Point(8, 337);
+			this.lblStatus.Location = new System.Drawing.Point(9, 337);
 			this.lblStatus.Name = "lblStatus";
-			this.lblStatus.Size = new System.Drawing.Size(0, 13);
+			this.lblStatus.Size = new System.Drawing.Size(0, 12);
 			this.lblStatus.TabIndex = 13;
-			// 
-			// CheckRadar
-			// 
-			this.CheckRadar.AutoSize = true;
-			this.CheckRadar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.CheckRadar.FlatAppearance.BorderSize = 3;
-			this.CheckRadar.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.CheckRadar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.CheckRadar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.CheckRadar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.CheckRadar.Location = new System.Drawing.Point(9, 16);
-			this.CheckRadar.Name = "CheckRadar";
-			this.CheckRadar.Size = new System.Drawing.Size(97, 19);
-			this.CheckRadar.TabIndex = 15;
-			this.CheckRadar.Text = "Reveal Radar";
-			this.CheckRadar.UseCompatibleTextRendering = true;
-			this.CheckRadar.UseVisualStyleBackColor = true;
-			this.CheckRadar.CheckedChanged += new System.EventHandler(this.CheckRadar_CheckedChanged);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.label1.Location = new System.Drawing.Point(35, 58);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(27, 18);
-			this.label1.TabIndex = 16;
-			this.label1.Text = "FOV";
-			this.label1.UseCompatibleTextRendering = true;
+			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
 			// Form1
 			// 
@@ -311,6 +354,8 @@
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			this.pnlVis.ResumeLayout(false);
 			this.pnlVis.PerformLayout();
 			this.panel1.ResumeLayout(false);
@@ -339,6 +384,7 @@
 		private System.Windows.Forms.Label lblStatus;
 		public System.Windows.Forms.CheckBox CheckRadar;
 		private System.Windows.Forms.Label label1;
+		public System.Windows.Forms.CheckBox lblFlashRemoval;
 	}
 }
 

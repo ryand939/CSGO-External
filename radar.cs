@@ -11,27 +11,28 @@ namespace DWext
 {
 	class radar
 	{
+		// so i can stop/start threads as needed:
+		public static ManualResetEvent waitHandle = new ManualResetEvent(false);
+
+
 		public static void Radar()
 		{
 			Form1 form = (Form1)Application.OpenForms["Form1"];
 			CheckState state = form.CheckRadar.CheckState;
+			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 
 			// Check the status of the radar checkbox
 			while (true)
 			{
 				if (form.CheckRadar.Checked)
 				{
-
-					int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
-
 					// Get what team the LocalPlayer is on
 					int LocalPlayerTeam = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iTeamNum);
 
 					// Loop through all possible entities in the server
 					for (int x = 0; x < 32;x++)
 					{
-
-						// For the current player
+						// Get a player from the list to look at
 						int currentPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwEntityList + x * 0x10);
 
 						// Check what team they are on, CT or T
@@ -40,7 +41,7 @@ namespace DWext
 						// Check if they are dormant (if false, radar can not pick them up)
 						bool isDormant = memory.ManageMemory.ReadMemory<bool>(currentPlayer + netvars.m_bDormant);
 
-						// If dormant, break out of loop and check later
+						// If dormant, continue
 						if (isDormant)
 						{
 							continue;
@@ -60,9 +61,8 @@ namespace DWext
 				// If unchecked in menu, break out of loop
 				if (CheckState.Unchecked == form.CheckRadar.CheckState)
 				{
-					continue;
+					waitHandle.WaitOne();
 				}
-
 				Thread.Sleep(500);
 			}
 		}

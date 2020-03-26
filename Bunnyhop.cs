@@ -16,6 +16,11 @@ namespace DWext
 		public static extern int GetAsyncKeyState(int key);
 
 
+		public static ManualResetEvent waitHandle = new ManualResetEvent(false);  // initialize with FALSE value to 
+																				  // allow individual threads to waitHandle.WaitOne(); until they are called
+																				  // by another thread with waitHandle.Set();
+																				  // took 3 hours to figure this out...
+
 		public static void Bhop()
 		{
 			Form1 form = (Form1)Application.OpenForms["Form1"];
@@ -56,19 +61,17 @@ namespace DWext
 					}
 					Thread.Sleep(delay);
 				}
-
+				 
 				//if the checkbox is empty, stop checking if space is held
 				if (CheckState.Unchecked == form.checkBhop.CheckState)
 				{
-					continue;
+					waitHandle.WaitOne();
 				}
-
 				Thread.Sleep(200);
 			}
 
 
 		}
-
 		
 	}
 }

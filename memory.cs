@@ -4,6 +4,21 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
+
+//
+//
+//
+//
+//
+// This memory class was not created by me. 
+// I would like to create my own memory class eventually, but I do not know enough just yet.
+//
+//
+//
+//
+//
+
+
 namespace DWext
 {
 	class memory
@@ -71,7 +86,7 @@ namespace DWext
                 byte[] buffer = new byte[ByteSize * MatrixSize]; // Create A Buffer With Size Of ByteSize * MatrixSize
                 ReadProcessMemory((int)m_pProcessHandle, Adress, buffer, buffer.Length, ref m_iNumberOfBytesRead);
 
-                return ConvertToFloatArray(buffer); // Transform the ByteArray to A Float Array (PseudoMatrix ;P)
+                return ConvertToFloatArray(buffer); // Transform the ByteArray to A Float Array
             }
 
             public static void WriteMemory<T>(int Adress, object Value)
