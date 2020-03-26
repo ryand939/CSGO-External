@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DWext
 {
-	public partial class Form1 : Form
+	public partial class menu : Form
 	{
 
 		public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -27,23 +27,21 @@ namespace DWext
 
 		Thread radarThread;
 		Thread BunnyHopThread;
+		Thread antiFlashThread;
 		bool menuHide = false;
 
-		public Form1()
+		public menu()
 		{
 			InitializeComponent();
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-
-
-
-
 			memory.ManageMemory.Initialize("csgo");
 			Offsets.client = memory.ManageMemory.GetModuleAdress("client_panorama");
 			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine");
 			init_thread();
+
 			GlobalKeyboardHook gkh = new GlobalKeyboardHook();
 			gkh.hook();
 			gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
@@ -75,6 +73,8 @@ namespace DWext
 			radarThread = new Thread(new ThreadStart(radar.Radar));
 
 			BunnyHopThread = new Thread(new ThreadStart(Bunnyhop.Bhop));
+
+			antiFlashThread = new Thread(new ThreadStart(AntiFlash.Antiflash));
 		}
 		private void txtFOV_TextChanged(object sender, EventArgs e)
 		{
@@ -165,6 +165,74 @@ namespace DWext
 				radar.waitHandle.Reset();
 			}
 		}
+		private void checkFlashRemoval_CheckedChanged(object sender, EventArgs e)
+		{
+
+			if (antiFlashThread.IsAlive == false)
+			{
+				antiFlashThread.Start();
+			}
+			if (checkFlashRemoval.Checked == true)
+			{
+				AntiFlash.waitHandle.Set();
+				AntiFlash.waitHandle.Reset();
+			}
+		}
+
+
+		private void btnDownFOV_MouseEnter(object sender, EventArgs e)
+		{
+			lblStatus.Text = "Edit your field of view";
+		}
+
+		private void btnDownFOV_MouseLeave(object sender, EventArgs e)
+		{
+			lblStatus.Text = "";
+		}
+
+		private void CheckRadar_MouseEnter(object sender, EventArgs e)
+		{
+			lblStatus.Text = "Reveal hidden enemies on radar";
+		}
+
+		private void CheckRadar_MouseLeave(object sender, EventArgs e)
+		{
+			lblStatus.Text = "";
+		}
+		// Quit button press
+		private void button1_Click(object sender, EventArgs e)
+		{
+			antiFlashThread.Abort();
+			BunnyHopThread.Abort();
+			radarThread.Abort();
+			Environment.Exit(0);
+		}
+
+		private void panel1_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				ReleaseCapture();
+				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+			}
+		}
+
+		private void lblFlashRemoval_MouseEnter(object sender, EventArgs e)
+		{
+
+			lblStatus.Text = "Removes flash bang screen effect";
+		}
+
+		private void lblFlashRemoval_MouseLeave(object sender, EventArgs e)
+		{
+			lblStatus.Text = "";
+
+		}
+
+		private void Form1_MouseDown(object sender, MouseEventArgs e)
+		{
+
+		}		
 		// paint stuff
 		private void label1_Paint(object sender, PaintEventArgs e)
 		{
@@ -352,77 +420,6 @@ namespace DWext
 								borderStyleBottomRight);
 		}
 
-		private void btnDownFOV_MouseEnter(object sender, EventArgs e)
-		{
-			lblStatus.Text = "Edit your field of view";
-		}
-
-		private void btnDownFOV_MouseLeave(object sender, EventArgs e)
-		{
-			lblStatus.Text = "";
-		}
-
-		private void CheckRadar_MouseEnter(object sender, EventArgs e)
-		{
-			lblStatus.Text = "Reveal hidden enemies on radar";
-		}
-
-		private void CheckRadar_MouseLeave(object sender, EventArgs e)
-		{
-			lblStatus.Text = "";
-		}
-		// Quit button press
-		private void button1_Click(object sender, EventArgs e)
-		{
-			BunnyHopThread.Abort();
-			radarThread.Abort();
-			Environment.Exit(0);
-		}
-
-		private void panel1_MouseDown(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				ReleaseCapture();
-				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-			}
-		}
-
-		private void lblFlashRemoval_MouseEnter(object sender, EventArgs e)
-		{
-
-			lblStatus.Text = "Removes flash bang screen effect";
-		}
-
-		private void lblFlashRemoval_MouseLeave(object sender, EventArgs e)
-		{
-			lblStatus.Text = "";
-
-		}
-
-		private void Form1_KeyDown(object sender, KeyEventArgs e)
-		{
-			Console.WriteLine("key pressed");
-			// invert menuHide bool
-			menuHide = !menuHide; 
-			if(GetAsyncKeyState(46) > 1)
-			{
-				if (menuHide)
-				{
-					
-				}
-				else
-				{
-					
-
-				}
-			}
-		}
-
-		private void Form1_MouseDown(object sender, MouseEventArgs e)
-		{
-
-		}
 	}
 }
 

@@ -30,6 +30,7 @@ namespace DWext
 		public const Int32 m_bIsScoped = 0x3914;
 		public const Int32 m_iDefaultFOV = 0x332C;
 		public const Int32 m_fFlags = 0x104;
+		public const Int32 m_flFlashDuration = 0xA410;
 
 	}
 }

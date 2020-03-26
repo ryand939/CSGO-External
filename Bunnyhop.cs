@@ -23,7 +23,7 @@ namespace DWext
 
 		public static void Bhop()
 		{
-			Form1 form = (Form1)Application.OpenForms["Form1"];
+			menu form = (menu)Application.OpenForms["menu"];
 			int flagJump;
 			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 			int forceJump = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwForceJump);
@@ -54,6 +54,7 @@ namespace DWext
 					if (flagJump == 257)
 					{
 						memory.ManageMemory.WriteMemory<int>(Offsets.client + Offsets.dwForceJump, 5);
+						Thread.Sleep(250);
 					}
 					else
 					{

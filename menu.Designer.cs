@@ -1,6 +1,6 @@
 ﻿namespace DWext
 {
-	partial class Form1
+	partial class menu
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -31,7 +31,7 @@
 			this.lblMain = new System.Windows.Forms.Label();
 			this.txtFOV = new System.Windows.Forms.TextBox();
 			this.pnlVis = new System.Windows.Forms.Panel();
-			this.lblFlashRemoval = new System.Windows.Forms.CheckBox();
+			this.checkFlashRemoval = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.CheckRadar = new System.Windows.Forms.CheckBox();
 			this.btnDownFOV = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
 			// pnlVis
 			// 
 			this.pnlVis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.pnlVis.Controls.Add(this.lblFlashRemoval);
+			this.pnlVis.Controls.Add(this.checkFlashRemoval);
 			this.pnlVis.Controls.Add(this.txtFOV);
 			this.pnlVis.Controls.Add(this.label1);
 			this.pnlVis.Controls.Add(this.CheckRadar);
@@ -99,24 +99,25 @@
 			this.pnlVis.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVis_Paint);
 			this.pnlVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
-			// lblFlashRemoval
+			// checkFlashRemoval
 			// 
-			this.lblFlashRemoval.AutoSize = true;
-			this.lblFlashRemoval.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.lblFlashRemoval.FlatAppearance.BorderSize = 3;
-			this.lblFlashRemoval.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.lblFlashRemoval.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.lblFlashRemoval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblFlashRemoval.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.lblFlashRemoval.Location = new System.Drawing.Point(9, 36);
-			this.lblFlashRemoval.Name = "lblFlashRemoval";
-			this.lblFlashRemoval.Size = new System.Drawing.Size(101, 19);
-			this.lblFlashRemoval.TabIndex = 17;
-			this.lblFlashRemoval.Text = "Remove Flash";
-			this.lblFlashRemoval.UseCompatibleTextRendering = true;
-			this.lblFlashRemoval.UseVisualStyleBackColor = true;
-			this.lblFlashRemoval.MouseEnter += new System.EventHandler(this.lblFlashRemoval_MouseEnter);
-			this.lblFlashRemoval.MouseLeave += new System.EventHandler(this.lblFlashRemoval_MouseLeave);
+			this.checkFlashRemoval.AutoSize = true;
+			this.checkFlashRemoval.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkFlashRemoval.FlatAppearance.BorderSize = 3;
+			this.checkFlashRemoval.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkFlashRemoval.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkFlashRemoval.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkFlashRemoval.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkFlashRemoval.Location = new System.Drawing.Point(9, 36);
+			this.checkFlashRemoval.Name = "checkFlashRemoval";
+			this.checkFlashRemoval.Size = new System.Drawing.Size(101, 19);
+			this.checkFlashRemoval.TabIndex = 17;
+			this.checkFlashRemoval.Text = "Remove Flash";
+			this.checkFlashRemoval.UseCompatibleTextRendering = true;
+			this.checkFlashRemoval.UseVisualStyleBackColor = true;
+			this.checkFlashRemoval.CheckedChanged += new System.EventHandler(this.checkFlashRemoval_CheckedChanged);
+			this.checkFlashRemoval.MouseEnter += new System.EventHandler(this.lblFlashRemoval_MouseEnter);
+			this.checkFlashRemoval.MouseLeave += new System.EventHandler(this.lblFlashRemoval_MouseLeave);
 			// 
 			// label1
 			// 
@@ -329,7 +330,7 @@
 			this.lblStatus.TabIndex = 13;
 			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
-			// Form1
+			// menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -350,12 +351,11 @@
 			this.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.KeyPreview = true;
-			this.Name = "Form1";
+			this.Name = "menu";
 			this.Text = "DWext";
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			this.pnlVis.ResumeLayout(false);
 			this.pnlVis.PerformLayout();
@@ -385,7 +385,7 @@
 		private System.Windows.Forms.Label lblStatus;
 		public System.Windows.Forms.CheckBox CheckRadar;
 		private System.Windows.Forms.Label label1;
-		public System.Windows.Forms.CheckBox lblFlashRemoval;
+		public System.Windows.Forms.CheckBox checkFlashRemoval;
 	}
 }
 

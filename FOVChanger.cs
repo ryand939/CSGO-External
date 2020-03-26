@@ -12,7 +12,7 @@ namespace DWext
 
 		public static void FOV()
 		{
-			Form1 form = (Form1)Application.OpenForms["Form1"];
+			menu form = (menu)Application.OpenForms["Form1"];
 			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 			int defaultFOV = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iDefaultFOV);
 			int defaultScopedFOV = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iDefaultFOV);

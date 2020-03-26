@@ -17,7 +17,7 @@ namespace DWext
 
 		public static void Radar()
 		{
-			Form1 form = (Form1)Application.OpenForms["Form1"];
+			menu form = (menu)Application.OpenForms["menu"];
 			CheckState state = form.CheckRadar.CheckState;
 			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 
