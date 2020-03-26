@@ -349,6 +349,7 @@
 			this.Controls.Add(this.lblMain);
 			this.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.KeyPreview = true;
 			this.Name = "Form1";
 			this.Text = "DWext";
 			this.TopMost = true;

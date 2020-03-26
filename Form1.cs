@@ -20,14 +20,14 @@ namespace DWext
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 		[System.Runtime.InteropServices.DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
-
 		[System.Runtime.InteropServices.DllImport("user32.dll")]
 		public static extern int GetAsyncKeyState(int key);
 
 
+
 		Thread radarThread;
 		Thread BunnyHopThread;
-		bool menuHide = true;
+		bool menuHide = false;
 
 		public Form1()
 		{
@@ -36,10 +36,38 @@ namespace DWext
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+
+
+
+
 			memory.ManageMemory.Initialize("csgo");
 			Offsets.client = memory.ManageMemory.GetModuleAdress("client_panorama");
 			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine");
 			init_thread();
+			GlobalKeyboardHook gkh = new GlobalKeyboardHook();
+			gkh.hook();
+			gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
+			gkh.HookedKeys.Add(Keys.Delete);
+		}
+
+		public void gkh_KeyDown(object sender, KeyEventArgs e)
+		{
+			Console.WriteLine("key pressed");
+			// invert menuHide bool
+			menuHide = !menuHide;
+			if (e.KeyCode == Keys.Delete)
+			{
+				Console.WriteLine("delete pressed");
+				if (menuHide)
+				{
+					this.Hide();
+				}
+				else
+				{
+					this.Show();
+
+				}
+			}
 		}
 
 		private void init_thread()
@@ -381,11 +409,12 @@ namespace DWext
 			{
 				if (menuHide)
 				{
-					this.Hide();
+					
 				}
 				else
 				{
-					this.Show();
+					
+
 				}
 			}
 		}

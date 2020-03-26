@@ -54,6 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FOVChanger.cs" />
+    <Compile Include="GlobalKeyboardHook.cs" />
     <Compile Include="memory.cs" />
     <Compile Include="Offsets.cs" />
     <Compile Include="Program.cs" />
