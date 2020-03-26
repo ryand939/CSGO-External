@@ -44,7 +44,7 @@ namespace DWext
 						if (isDormant)
 						{
 							continue;
-						}
+						} 
 
 						// If currentPlayer is on the opposite team, force them to be spotted. This will put them on radar.
 						if (LocalPlayerTeam != currentPlayerTeam)
