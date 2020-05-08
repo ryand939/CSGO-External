@@ -31,6 +31,7 @@ namespace DWext
 		Thread glowThread;
 
 		bool menuHide = false;
+		bool thirdPerson = false;
 
 		public menu()
 		{
@@ -41,23 +42,27 @@ namespace DWext
 		{
 			memory.ManageMemory.Initialize("csgo");
 			Offsets.client = memory.ManageMemory.GetModuleAdress("client_panorama");
-			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine");
+			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine"); 
+
 			init_thread();
 
 			GlobalKeyboardHook gkh = new GlobalKeyboardHook();
 			gkh.hook();
 			gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
 			gkh.HookedKeys.Add(Keys.Delete);
+			gkh.HookedKeys.Add(Keys.C);
 		}
 
 		public void gkh_KeyDown(object sender, KeyEventArgs e)
 		{
 			Thread.Sleep(100);
 			Console.WriteLine("key press");
+			Console.WriteLine(thirdPerson);
+			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 			// invert menuHide bool
-			menuHide = !menuHide;
 			if (e.KeyCode == Keys.Delete)
 			{
+				menuHide = !menuHide;
 				if (menuHide)
 				{
 					this.Hide();
@@ -68,6 +73,20 @@ namespace DWext
 
 				}
 			}
+			if (e.KeyCode == Keys.C)
+			{
+				thirdPerson = !thirdPerson;
+				if (thirdPerson)
+				{
+					// forces the observer mode netvar to 1, which is third person
+					memory.ManageMemory.WriteMemory<int>(LocalPlayer + netvars.m_iObserverMode, 1);
+				}
+				else
+				{
+					// forces the observer mode netvar to 0, which is first person
+					memory.ManageMemory.WriteMemory<int>(LocalPlayer + netvars.m_iObserverMode, 0);
+				}
+			}
 		}
 
 		private void init_thread()
@@ -75,7 +94,7 @@ namespace DWext
 			radarThread = new Thread(new ThreadStart(radar.Radar));
 
 			BunnyHopThread = new Thread(new ThreadStart(Bunnyhop.Bhop));
-
+			
 			antiFlashThread = new Thread(new ThreadStart(AntiFlash.Antiflash));
 
 			glowThread = new Thread(new ThreadStart(Glow.DrawGlow));
@@ -88,9 +107,6 @@ namespace DWext
 
 		private void button1_Click_1(object sender, EventArgs e)
 		{
-			int forceJump = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwForceJump);
-			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
-			int flagJump = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_fFlags);
 			memory.ManageMemory.WriteMemory<int>(Offsets.client + Offsets.dwForceJump, 5);
 
 		}

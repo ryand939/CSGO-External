@@ -32,6 +32,7 @@ namespace DWext
 		public const Int32 m_fFlags = 0x104;
 		public const Int32 m_flFlashDuration = 0xA410;
 		public const Int32 m_iGlowIndex = 0xA428;
+		public const Int32 m_iObserverMode = 0x3378;
 
 	}
 }
