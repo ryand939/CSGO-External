@@ -47,6 +47,7 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.lblStatus = new System.Windows.Forms.Label();
+			this.checkGlow = new System.Windows.Forms.CheckBox();
 			this.pnlVis.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -86,6 +87,7 @@
 			// pnlVis
 			// 
 			this.pnlVis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlVis.Controls.Add(this.checkGlow);
 			this.pnlVis.Controls.Add(this.checkFlashRemoval);
 			this.pnlVis.Controls.Add(this.txtFOV);
 			this.pnlVis.Controls.Add(this.label1);
@@ -143,7 +145,7 @@
 			this.CheckRadar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.CheckRadar.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.CheckRadar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.CheckRadar.Location = new System.Drawing.Point(9, 16);
+			this.CheckRadar.Location = new System.Drawing.Point(9, 12);
 			this.CheckRadar.Name = "CheckRadar";
 			this.CheckRadar.Size = new System.Drawing.Size(97, 19);
 			this.CheckRadar.TabIndex = 15;
@@ -330,6 +332,25 @@
 			this.lblStatus.TabIndex = 13;
 			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
+			// checkGlow
+			// 
+			this.checkGlow.AutoSize = true;
+			this.checkGlow.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkGlow.FlatAppearance.BorderSize = 3;
+			this.checkGlow.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkGlow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkGlow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkGlow.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkGlow.Location = new System.Drawing.Point(126, 12);
+			this.checkGlow.Name = "checkGlow";
+			this.checkGlow.Size = new System.Drawing.Size(92, 19);
+			this.checkGlow.TabIndex = 18;
+			this.checkGlow.Text = "Enemy Glow";
+			this.checkGlow.ThreeState = true;
+			this.checkGlow.UseCompatibleTextRendering = true;
+			this.checkGlow.UseVisualStyleBackColor = true;
+			this.checkGlow.CheckedChanged += new System.EventHandler(this.checkGlow_CheckedChanged);
+			// 
 			// menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,6 +407,7 @@
 		public System.Windows.Forms.CheckBox CheckRadar;
 		private System.Windows.Forms.Label label1;
 		public System.Windows.Forms.CheckBox checkFlashRemoval;
+		public System.Windows.Forms.CheckBox checkGlow;
 	}
 }
 

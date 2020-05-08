@@ -58,7 +58,6 @@ namespace DWext
         public event KeyEventHandler KeyDown;
         public event KeyEventHandler KeyUp;
 
-        // This is the Constructor. This is the code that runs every time you create a new GlobalKeyboardHook object
         public GlobalKeyboardHook()
         {
             llkh = new LLKeyboardHook(HookProc);

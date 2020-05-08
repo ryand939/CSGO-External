@@ -28,6 +28,8 @@ namespace DWext
 		Thread radarThread;
 		Thread BunnyHopThread;
 		Thread antiFlashThread;
+		Thread glowThread;
+
 		bool menuHide = false;
 
 		public menu()
@@ -50,12 +52,12 @@ namespace DWext
 
 		public void gkh_KeyDown(object sender, KeyEventArgs e)
 		{
-			Console.WriteLine("key pressed");
+			Thread.Sleep(100);
+			Console.WriteLine("key press");
 			// invert menuHide bool
 			menuHide = !menuHide;
 			if (e.KeyCode == Keys.Delete)
 			{
-				Console.WriteLine("delete pressed");
 				if (menuHide)
 				{
 					this.Hide();
@@ -75,6 +77,8 @@ namespace DWext
 			BunnyHopThread = new Thread(new ThreadStart(Bunnyhop.Bhop));
 
 			antiFlashThread = new Thread(new ThreadStart(AntiFlash.Antiflash));
+
+			glowThread = new Thread(new ThreadStart(Glow.DrawGlow));
 		}
 		private void txtFOV_TextChanged(object sender, EventArgs e)
 		{
@@ -148,6 +152,19 @@ namespace DWext
 			lblStatus.Text = "[CHECK]: Perfect [SHADED]: Legit";
 		}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 		private void checkBhop_MouseLeave(object sender, EventArgs e)
 		{
 			lblStatus.Text = "";
@@ -177,6 +194,10 @@ namespace DWext
 				AntiFlash.waitHandle.Set();
 				AntiFlash.waitHandle.Reset();
 			}
+		}
+		private void checkGlow_CheckedChanged(object sender, EventArgs e)
+		{
+
 		}
 
 

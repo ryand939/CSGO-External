@@ -12,7 +12,7 @@ namespace DWext
 
 		public static void FOV()
 		{
-			menu form = (menu)Application.OpenForms["Form1"];
+			menu form = (menu)Application.OpenForms["menu"];
 			int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
 			int defaultFOV = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iDefaultFOV);
 			int defaultScopedFOV = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iDefaultFOV);
@@ -26,10 +26,13 @@ namespace DWext
 				bool isScoped = memory.ManageMemory.ReadMemory<bool>(LocalPlayer + netvars.m_bIsScoped);
 				if (isScoped)
 				{
+
 					memory.ManageMemory.WriteMemory<int>(LocalPlayer + netvars.m_iDefaultFOV, defaultFOV);
 				}
 				else
 				{
+					int currentFov = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iDefaultFOV);
+					Console.WriteLine($"fov: {currentFov}");
 					memory.ManageMemory.WriteMemory<int>(LocalPlayer + netvars.m_iDefaultFOV, Convert.ToInt32(form.txtFOV.Text));
 				}
 			}

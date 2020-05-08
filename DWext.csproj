@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AntiFlash.cs" />
     <Compile Include="Bunnyhop.cs" />
+    <Compile Include="Glow.cs" />
     <Compile Include="menu.cs">
       <SubType>Form</SubType>
     </Compile>
