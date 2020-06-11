@@ -41,7 +41,7 @@ namespace DWext
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			memory.ManageMemory.Initialize("csgo");
-			Offsets.client = memory.ManageMemory.GetModuleAdress("client_panorama");
+			Offsets.client = memory.ManageMemory.GetModuleAdress("client");
 			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine"); 
 
 			init_thread();
@@ -213,6 +213,15 @@ namespace DWext
 		}
 		private void checkGlow_CheckedChanged(object sender, EventArgs e)
 		{
+			if (glowThread.IsAlive == false)
+			{
+				glowThread.Start();
+			}
+			if (checkGlow.Checked == true)
+			{
+				Glow.waitHandle.Set();
+				Glow.waitHandle.Reset();
+			}
 
 		}
 
