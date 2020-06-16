@@ -50,6 +50,7 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.lblStatus = new System.Windows.Forms.Label();
+			this.checkChams = new System.Windows.Forms.CheckBox();
 			this.pnlVis.SuspendLayout();
 			this.pnlAim.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -78,7 +79,7 @@
 			this.txtFOV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.txtFOV.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtFOV.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.txtFOV.Location = new System.Drawing.Point(29, 72);
+			this.txtFOV.Location = new System.Drawing.Point(29, 128);
 			this.txtFOV.MaxLength = 3;
 			this.txtFOV.Name = "txtFOV";
 			this.txtFOV.Size = new System.Drawing.Size(37, 22);
@@ -92,6 +93,7 @@
 			// pnlVis
 			// 
 			this.pnlVis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlVis.Controls.Add(this.checkChams);
 			this.pnlVis.Controls.Add(this.checkGlow);
 			this.pnlVis.Controls.Add(this.checkFlashRemoval);
 			this.pnlVis.Controls.Add(this.txtFOV);
@@ -99,9 +101,9 @@
 			this.pnlVis.Controls.Add(this.CheckRadar);
 			this.pnlVis.Controls.Add(this.btnDownFOV);
 			this.pnlVis.Controls.Add(this.btnUpFOV);
-			this.pnlVis.Location = new System.Drawing.Point(13, 148);
+			this.pnlVis.Location = new System.Drawing.Point(13, 89);
 			this.pnlVis.Name = "pnlVis";
-			this.pnlVis.Size = new System.Drawing.Size(247, 100);
+			this.pnlVis.Size = new System.Drawing.Size(247, 156);
 			this.pnlVis.TabIndex = 7;
 			this.pnlVis.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVis_Paint);
 			this.pnlVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
@@ -151,7 +153,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.label1.Location = new System.Drawing.Point(35, 58);
+			this.label1.Location = new System.Drawing.Point(35, 112);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(27, 18);
 			this.label1.TabIndex = 16;
@@ -189,7 +191,7 @@
 			this.btnDownFOV.Font = new System.Drawing.Font("Verdana", 6F, System.Drawing.FontStyle.Bold);
 			this.btnDownFOV.ForeColor = System.Drawing.SystemColors.ButtonFace;
 			this.btnDownFOV.Image = global::DWext.Properties.Resources.btnGrad;
-			this.btnDownFOV.Location = new System.Drawing.Point(6, 72);
+			this.btnDownFOV.Location = new System.Drawing.Point(6, 128);
 			this.btnDownFOV.Name = "btnDownFOV";
 			this.btnDownFOV.Size = new System.Drawing.Size(21, 22);
 			this.btnDownFOV.TabIndex = 4;
@@ -208,7 +210,7 @@
 			this.btnUpFOV.Font = new System.Drawing.Font("Verdana", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnUpFOV.ForeColor = System.Drawing.SystemColors.ButtonFace;
 			this.btnUpFOV.Image = global::DWext.Properties.Resources.btnGrad;
-			this.btnUpFOV.Location = new System.Drawing.Point(68, 72);
+			this.btnUpFOV.Location = new System.Drawing.Point(68, 128);
 			this.btnUpFOV.Name = "btnUpFOV";
 			this.btnUpFOV.Size = new System.Drawing.Size(21, 22);
 			this.btnUpFOV.TabIndex = 5;
@@ -224,7 +226,7 @@
 			this.lblVisuals.AutoSize = true;
 			this.lblVisuals.BackColor = System.Drawing.Color.Transparent;
 			this.lblVisuals.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblVisuals.Location = new System.Drawing.Point(25, 141);
+			this.lblVisuals.Location = new System.Drawing.Point(25, 82);
 			this.lblVisuals.Name = "lblVisuals";
 			this.lblVisuals.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
 			this.lblVisuals.Size = new System.Drawing.Size(48, 20);
@@ -255,7 +257,7 @@
 			this.pnlAim.Controls.Add(this.checkTrigger);
 			this.pnlAim.Location = new System.Drawing.Point(12, 38);
 			this.pnlAim.Name = "pnlAim";
-			this.pnlAim.Size = new System.Drawing.Size(248, 100);
+			this.pnlAim.Size = new System.Drawing.Size(248, 39);
 			this.pnlAim.TabIndex = 9;
 			this.pnlAim.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAim_Paint);
 			this.pnlAim.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
@@ -365,7 +367,7 @@
 			// 
 			// panel2
 			// 
-			this.panel2.Location = new System.Drawing.Point(24, 144);
+			this.panel2.Location = new System.Drawing.Point(24, 85);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(19, 16);
 			this.panel2.TabIndex = 7;
@@ -398,24 +400,44 @@
 			this.lblStatus.TabIndex = 13;
 			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
+			// checkChams
+			// 
+			this.checkChams.AutoSize = true;
+			this.checkChams.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkChams.FlatAppearance.BorderSize = 3;
+			this.checkChams.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkChams.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkChams.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkChams.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkChams.Location = new System.Drawing.Point(9, 61);
+			this.checkChams.Name = "checkChams";
+			this.checkChams.Size = new System.Drawing.Size(60, 19);
+			this.checkChams.TabIndex = 19;
+			this.checkChams.Text = "Chams";
+			this.checkChams.UseCompatibleTextRendering = true;
+			this.checkChams.UseVisualStyleBackColor = true;
+			this.checkChams.CheckedChanged += new System.EventHandler(this.checkChams_CheckedChanged);
+			this.checkChams.MouseEnter += new System.EventHandler(this.checkChams_MouseEnter);
+			this.checkChams.MouseLeave += new System.EventHandler(this.checkChams_MouseLeave);
+			// 
 			// menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.ClientSize = new System.Drawing.Size(272, 357);
+			this.Controls.Add(this.lblVisuals);
 			this.Controls.Add(this.lblStatus);
 			this.Controls.Add(this.lblMisc);
 			this.Controls.Add(this.panel4);
 			this.Controls.Add(this.lblAim);
 			this.Controls.Add(this.panel3);
-			this.Controls.Add(this.lblVisuals);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.pnlAim);
 			this.Controls.Add(this.pnlVis);
 			this.Controls.Add(this.btnQuit);
 			this.Controls.Add(this.lblMain);
+			this.Controls.Add(this.pnlAim);
 			this.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.KeyPreview = true;
@@ -459,6 +481,7 @@
 		public System.Windows.Forms.CheckBox checkGlow;
 		public System.Windows.Forms.CheckBox checkTrigger;
 		public System.Windows.Forms.CheckBox checkTeamTarget;
+		public System.Windows.Forms.CheckBox checkChams;
 	}
 }
 

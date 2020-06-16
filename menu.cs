@@ -30,6 +30,7 @@ namespace DWext
 		Thread antiFlashThread;
 		Thread glowThread;
 		Thread triggerThread;
+		Thread chamsThread;
 
 
 		bool menuHide = false;
@@ -102,6 +103,8 @@ namespace DWext
 			glowThread = new Thread(new ThreadStart(Glow.DrawGlow));
 
 			triggerThread = new Thread(new ThreadStart(Triggerbot.triggerbot));
+
+			chamsThread = new Thread(new ThreadStart(Chams.chams));
 		}
 
 
@@ -489,7 +492,7 @@ namespace DWext
 
 		private void checkTeamTarget_MouseEnter(object sender, EventArgs e)
 		{
-			lblStatus.Text = "Aimbot properties will applied to teammates";
+			lblStatus.Text = "Aimbot properties will be applied to teammates";
 		}
 
 		private void checkTeamTarget_MouseLeave(object sender, EventArgs e)
@@ -513,6 +516,29 @@ namespace DWext
 		}
 
 		private void lblMain_MouseLeave(object sender, EventArgs e)
+		{
+			lblStatus.Text = "";
+		}
+
+		private void checkChams_CheckedChanged(object sender, EventArgs e)
+		{
+			if (chamsThread.IsAlive == false)
+			{
+				chamsThread.Start();
+			}
+			if (checkTrigger.Checked == true)
+			{
+				Chams.waitHandle.Set();
+				Chams.waitHandle.Reset();
+			}
+		}
+
+		private void checkChams_MouseEnter(object sender, EventArgs e)
+		{
+			lblStatus.Text = "Use shaded models";
+		}
+
+		private void checkChams_MouseLeave(object sender, EventArgs e)
 		{
 			lblStatus.Text = "";
 		}
