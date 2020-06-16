@@ -17,6 +17,7 @@ namespace DWext
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new menu());
+
 		}
 	}
 }

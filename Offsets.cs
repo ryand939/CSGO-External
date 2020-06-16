@@ -12,12 +12,14 @@ namespace DWext
 		public static int engine;
 
 
-		public const Int32 dwLocalPlayer = 0xD36BA4;
-		public const Int32 dwEntityList = 0x4D4B1A4;
-		public const Int32 dwForceForward = 0x317C7A4;
-        public const Int32 dwForceAttack = 0x317C744;
-        public const Int32 dwForceJump = 0x51F4E28;
-        public const Int32 dwGlowObjectManager = 0x5292FA0;
+		public const Int32 dwLocalPlayer = 0xD39BEC;
+		public const Int32 dwEntityList = 0x4D4E21C;
+		public const Int32 dwForceForward = 0x317F7A4;
+		public const Int32 dwForceAttack = 0x317F750;
+		public const Int32 dwForceJump = 0x51F7EB4;
+		public const Int32 dwGlowObjectManager = 0x5296060;
+		public const Int32 dwClientState_ViewAngles = 0x4D88;
+		public const Int32 dwClientState_State = 0x108;
 	}
 	class netvars
 	{
@@ -32,7 +34,10 @@ namespace DWext
 		public const Int32 m_fFlags = 0x104;
         public const Int32 m_flFlashDuration = 0xA420;
         public const Int32 m_iGlowIndex = 0xA438;
-        public const Int32 m_iObserverMode = 0x3378;
+		public const Int32 m_iObserverMode = 0x3378;
+		public const Int32 m_aimPunchAngle = 0x302C;
+		public const Int32 m_iShotsFired = 0xA390;
+		public const Int32 m_iCrosshairId = 0xB3E4;
 
 	}
 }

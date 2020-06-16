@@ -17,7 +17,7 @@ namespace DWext
             menu form = (menu)Application.OpenForms["menu"];
             CheckState state = form.CheckRadar.CheckState;
             float r = 0f; float b = 1f; float g = 0f; float a = 1f; // friendly
-            float r_e = 1f; float b_e = 0f; float g_e = 0f;
+            float r_e = 1f; float b_e = 0f; float g_e = 0f; // enemy
 
 
             while (true)

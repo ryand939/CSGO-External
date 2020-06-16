@@ -31,6 +31,7 @@
 			this.lblMain = new System.Windows.Forms.Label();
 			this.txtFOV = new System.Windows.Forms.TextBox();
 			this.pnlVis = new System.Windows.Forms.Panel();
+			this.checkGlow = new System.Windows.Forms.CheckBox();
 			this.checkFlashRemoval = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.CheckRadar = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,8 @@
 			this.lblVisuals = new System.Windows.Forms.Label();
 			this.lblAim = new System.Windows.Forms.Label();
 			this.pnlAim = new System.Windows.Forms.Panel();
+			this.checkTeamTarget = new System.Windows.Forms.CheckBox();
+			this.checkTrigger = new System.Windows.Forms.CheckBox();
 			this.lblMisc = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.checkBhop = new System.Windows.Forms.CheckBox();
@@ -47,8 +50,8 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.lblStatus = new System.Windows.Forms.Label();
-			this.checkGlow = new System.Windows.Forms.CheckBox();
 			this.pnlVis.SuspendLayout();
+			this.pnlAim.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -65,6 +68,8 @@
 			this.lblMain.UseCompatibleTextRendering = true;
 			this.lblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.label1_Paint);
 			this.lblMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			this.lblMain.MouseEnter += new System.EventHandler(this.lblMain_MouseEnter);
+			this.lblMain.MouseLeave += new System.EventHandler(this.lblMain_MouseLeave);
 			// 
 			// txtFOV
 			// 
@@ -100,6 +105,26 @@
 			this.pnlVis.TabIndex = 7;
 			this.pnlVis.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVis_Paint);
 			this.pnlVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// checkGlow
+			// 
+			this.checkGlow.AutoSize = true;
+			this.checkGlow.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkGlow.FlatAppearance.BorderSize = 3;
+			this.checkGlow.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkGlow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkGlow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkGlow.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkGlow.Location = new System.Drawing.Point(126, 12);
+			this.checkGlow.Name = "checkGlow";
+			this.checkGlow.Size = new System.Drawing.Size(75, 19);
+			this.checkGlow.TabIndex = 18;
+			this.checkGlow.Text = "Glow ESP";
+			this.checkGlow.UseCompatibleTextRendering = true;
+			this.checkGlow.UseVisualStyleBackColor = true;
+			this.checkGlow.CheckedChanged += new System.EventHandler(this.checkGlow_CheckedChanged);
+			this.checkGlow.MouseEnter += new System.EventHandler(this.checkGlow_MouseEnter);
+			this.checkGlow.MouseLeave += new System.EventHandler(this.checkGlow_MouseLeave);
 			// 
 			// checkFlashRemoval
 			// 
@@ -226,12 +251,53 @@
 			// pnlAim
 			// 
 			this.pnlAim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlAim.Controls.Add(this.checkTeamTarget);
+			this.pnlAim.Controls.Add(this.checkTrigger);
 			this.pnlAim.Location = new System.Drawing.Point(12, 38);
 			this.pnlAim.Name = "pnlAim";
 			this.pnlAim.Size = new System.Drawing.Size(248, 100);
 			this.pnlAim.TabIndex = 9;
 			this.pnlAim.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAim_Paint);
 			this.pnlAim.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// checkTeamTarget
+			// 
+			this.checkTeamTarget.AutoSize = true;
+			this.checkTeamTarget.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkTeamTarget.FlatAppearance.BorderSize = 3;
+			this.checkTeamTarget.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkTeamTarget.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkTeamTarget.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkTeamTarget.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkTeamTarget.Location = new System.Drawing.Point(127, 11);
+			this.checkTeamTarget.Name = "checkTeamTarget";
+			this.checkTeamTarget.Size = new System.Drawing.Size(94, 19);
+			this.checkTeamTarget.TabIndex = 20;
+			this.checkTeamTarget.Text = "Target Team";
+			this.checkTeamTarget.UseCompatibleTextRendering = true;
+			this.checkTeamTarget.UseVisualStyleBackColor = true;
+			this.checkTeamTarget.MouseEnter += new System.EventHandler(this.checkTeamTarget_MouseEnter);
+			this.checkTeamTarget.MouseLeave += new System.EventHandler(this.checkTeamTarget_MouseLeave);
+			// 
+			// checkTrigger
+			// 
+			this.checkTrigger.AutoSize = true;
+			this.checkTrigger.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkTrigger.FlatAppearance.BorderSize = 3;
+			this.checkTrigger.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkTrigger.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkTrigger.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkTrigger.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkTrigger.Location = new System.Drawing.Point(10, 11);
+			this.checkTrigger.Name = "checkTrigger";
+			this.checkTrigger.Size = new System.Drawing.Size(80, 19);
+			this.checkTrigger.TabIndex = 19;
+			this.checkTrigger.Text = "Triggerbot";
+			this.checkTrigger.UseCompatibleTextRendering = true;
+			this.checkTrigger.UseVisualStyleBackColor = true;
+			this.checkTrigger.CheckedChanged += new System.EventHandler(this.checkTrigger_CheckedChanged);
+			this.checkTrigger.MouseEnter += new System.EventHandler(this.checkTrigger_MouseEnter);
+			this.checkTrigger.MouseLeave += new System.EventHandler(this.checkTrigger_MouseLeave);
 			// 
 			// lblMisc
 			// 
@@ -332,25 +398,6 @@
 			this.lblStatus.TabIndex = 13;
 			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
-			// checkGlow
-			// 
-			this.checkGlow.AutoSize = true;
-			this.checkGlow.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.checkGlow.FlatAppearance.BorderSize = 3;
-			this.checkGlow.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.checkGlow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.checkGlow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkGlow.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.checkGlow.Location = new System.Drawing.Point(126, 12);
-			this.checkGlow.Name = "checkGlow";
-			this.checkGlow.Size = new System.Drawing.Size(92, 19);
-			this.checkGlow.TabIndex = 18;
-			this.checkGlow.Text = "Enemy Glow";
-			this.checkGlow.ThreeState = true;
-			this.checkGlow.UseCompatibleTextRendering = true;
-			this.checkGlow.UseVisualStyleBackColor = true;
-			this.checkGlow.CheckedChanged += new System.EventHandler(this.checkGlow_CheckedChanged);
-			// 
 			// menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +427,8 @@
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			this.pnlVis.ResumeLayout(false);
 			this.pnlVis.PerformLayout();
+			this.pnlAim.ResumeLayout(false);
+			this.pnlAim.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
@@ -408,6 +457,8 @@
 		private System.Windows.Forms.Label label1;
 		public System.Windows.Forms.CheckBox checkFlashRemoval;
 		public System.Windows.Forms.CheckBox checkGlow;
+		public System.Windows.Forms.CheckBox checkTrigger;
+		public System.Windows.Forms.CheckBox checkTeamTarget;
 	}
 }
 

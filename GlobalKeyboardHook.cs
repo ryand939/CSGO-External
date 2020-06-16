@@ -63,8 +63,10 @@ namespace DWext
             llkh = new LLKeyboardHook(HookProc);
         }
         ~GlobalKeyboardHook()
-        { unhook(); }
-
+        {
+            Console.WriteLine("unhooking");
+            unhook(); 
+        }
         public void hook()
         {
             IntPtr hInstance = LoadLibrary("User32");
@@ -83,6 +85,7 @@ namespace DWext
                 Keys key = (Keys)lParam.vkCode;
                 if (HookedKeys.Contains(key))
                 {
+                    Console.WriteLine("hooked key pressed");
                     KeyEventArgs kArg = new KeyEventArgs(key);
                     if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyDown != null))
                         KeyDown(this, kArg);
