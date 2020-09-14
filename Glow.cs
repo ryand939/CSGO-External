@@ -16,8 +16,7 @@ namespace DWext
         {       
             
             menu form = (menu)Application.OpenForms["menu"];
-            CheckState state = form.CheckRadar.CheckState;
-            float r = 0; float b = 1f; float g = 0f; float a = 1f; // friendly
+            CheckState state = form.CheckRadar.CheckState;            float r = 0; float b = 1f; float g = 0f; float a = 1f; // friendly
             float r_e = 1f; float b_e = 0f; float g_e = 0f; // enemy
             
 
@@ -50,10 +49,10 @@ namespace DWext
                             {
                                 if (LocalPlayerTeam == ent_team)
                                 {
-                                    Console.WriteLine($"rgb({colorpicker.trackRed.Value},)");
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), colorpicker.trackRed.Value);
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), colorpicker.trackGreen.Value);
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), colorpicker.trackBlue.Value);
+                                    Console.WriteLine($"rgb({colorpicker.trackRed.Value},{colorpicker.trackGreen.Value},{colorpicker.trackBlue.Value})");
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), ((float)colorpicker.trackRed.Value)/255);
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), ((float)colorpicker.trackGreen.Value)/255);
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), ((float)colorpicker.trackBlue.Value)/255);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x10)), a);
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x24)), true);
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x25)), false);

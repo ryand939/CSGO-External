@@ -52,7 +52,12 @@ namespace DWext
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+
+			//very bad VVVVVVV
 			Control.CheckForIllegalCrossThreadCalls = false;
+			// very bad CODE BAD ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			// FIX SOMEHOW
+
 			memory.ManageMemory.Initialize("csgo");
 			Offsets.client = memory.ManageMemory.GetModuleAdress("client");
 			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine");
