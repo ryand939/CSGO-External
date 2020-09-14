@@ -10,25 +10,30 @@ using System.Windows.Forms;
 namespace DWext
 {
 	class Glow
-	{
+    {
         public static ManualResetEvent waitHandle = new ManualResetEvent(false);
-        public static void DrawGlow()
-        {        
+        public static void DrawGlow(colorpicker colorpicker)
+        {       
+            
             menu form = (menu)Application.OpenForms["menu"];
             CheckState state = form.CheckRadar.CheckState;
-            float r = 0f; float b = 1f; float g = 0f; float a = 1f; // friendly
+            float r = 0; float b = 1f; float g = 0f; float a = 1f; // friendly
             float r_e = 1f; float b_e = 0f; float g_e = 0f; // enemy
-
+            
 
             while (true)
             {
+
                 if (form.checkGlow.Checked)
                     {
-                        // glb 
-                        int gp = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwGlowObjectManager);
-
+                    // glb 
+                    int gp = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwGlowObjectManager);
                     int LocalPlayer = memory.ManageMemory.ReadMemory<int>(Offsets.client + Offsets.dwLocalPlayer);
                     int LocalPlayerTeam = memory.ManageMemory.ReadMemory<int>(LocalPlayer + netvars.m_iTeamNum);
+
+
+
+
                     if (form.checkGlow.Checked)
                     {
                         for (int i = 0; i < 32; i++)
@@ -45,9 +50,10 @@ namespace DWext
                             {
                                 if (LocalPlayerTeam == ent_team)
                                 {
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), r);
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), g);
-                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), b);
+                                    Console.WriteLine($"rgb({colorpicker.trackRed.Value},)");
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), colorpicker.trackRed.Value);
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), colorpicker.trackGreen.Value);
+                                    memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), colorpicker.trackBlue.Value);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x10)), a);
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x24)), true);
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x25)), false);

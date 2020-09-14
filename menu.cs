@@ -35,8 +35,15 @@ namespace DWext
 
 		bool menuHide = false;
 		bool thirdPerson = false;
+		bool showColorPicker = false;
+
 
 		GlobalKeyboardHook gkh = new GlobalKeyboardHook();
+		overlay overlay = new overlay();
+		colorpicker colorpickerform = new colorpicker();
+
+
+
 
 		public menu()
 		{
@@ -45,6 +52,7 @@ namespace DWext
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			Control.CheckForIllegalCrossThreadCalls = false;
 			memory.ManageMemory.Initialize("csgo");
 			Offsets.client = memory.ManageMemory.GetModuleAdress("client");
 			Offsets.engine = memory.ManageMemory.GetModuleAdress("engine");
@@ -55,6 +63,7 @@ namespace DWext
 			gkh.HookedKeys.Add(Keys.Delete);
 			gkh.HookedKeys.Add(Keys.C);
 			init_thread();
+			colorpickerform.Location = new Point(this.Location.X + 277, this.Location.Y);
 		}
 
 		public void gkh_KeyDown(object sender, KeyEventArgs e)
@@ -67,6 +76,8 @@ namespace DWext
 				if (menuHide)
 				{
 					this.Hide();
+					showColorPicker = false;
+					colorpickerform.Hide();
 				}
 				else
 				{
@@ -100,7 +111,8 @@ namespace DWext
 			
 			antiFlashThread = new Thread(new ThreadStart(AntiFlash.Antiflash));
 
-			glowThread = new Thread(new ThreadStart(Glow.DrawGlow));
+			glowThread = new Thread(() => Glow.DrawGlow(colorpickerform));
+			//glowThread = new Thread(new ThreadStart(Glow.DrawGlow));
 
 			triggerThread = new Thread(new ThreadStart(Triggerbot.triggerbot));
 
@@ -261,6 +273,8 @@ namespace DWext
 			{
 				ReleaseCapture();
 				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+				colorpickerform.Location = new Point(this.Location.X + 277, this.Location.Y);
+				
 			}
 		}
 
@@ -502,7 +516,7 @@ namespace DWext
 
 		private void checkTrigger_MouseEnter(object sender, EventArgs e)
 		{
-			lblStatus.Text = "Automatically shoot at enemies";
+			lblStatus.Text = $"Automatically shoot at enemies{colorpickerform.trackRed.Value}";
 		}
 
 		private void checkTrigger_MouseLeave(object sender, EventArgs e)
@@ -541,6 +555,33 @@ namespace DWext
 		private void checkChams_MouseLeave(object sender, EventArgs e)
 		{
 			lblStatus.Text = "";
+		}
+
+		private void checkOverlay_CheckedChanged(object sender, EventArgs e)
+		{
+			if(checkOverlay.Checked == true)
+			{
+				overlay.Show();
+			}
+			else
+			{
+				overlay.Hide();
+			}
+		}
+
+		private void button1_Click_2(object sender, EventArgs e)
+		{
+			showColorPicker = !showColorPicker;
+
+			if(showColorPicker)// is true
+			{
+				colorpickerform.Location = new Point(this.Location.X + 277, this.Location.Y);
+				colorpickerform.Show();
+			}
+			else
+			{
+				colorpickerform.Hide();
+			}
 		}
 	}
 }
