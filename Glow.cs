@@ -16,10 +16,12 @@ namespace DWext
         {       
             
             menu form = (menu)Application.OpenForms["menu"];
-            CheckState state = form.CheckRadar.CheckState;            float r = 0; float b = 1f; float g = 0f; float a = 1f; // friendly
-            float r_e = 1f; float b_e = 0f; float g_e = 0f; // enemy
+            CheckState state = form.CheckRadar.CheckState;            
+           float r; float b; float g; 
+           float r_e; float b_e; float g_e; // enemy
             
-
+            float a = 1f; // Alpha
+            
             while (true)
             {
 
@@ -49,7 +51,7 @@ namespace DWext
                             {
                                 if (LocalPlayerTeam == ent_team)
                                 {
-                                    Console.WriteLine($"rgb({colorpicker.trackRed.Value},{colorpicker.trackGreen.Value},{colorpicker.trackBlue.Value})");
+                                    //Console.WriteLine($"rgb({colorpicker.trackRed.Value},{colorpicker.trackGreen.Value},{colorpicker.trackBlue.Value})");
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), ((float)colorpicker.trackRed.Value)/255);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), ((float)colorpicker.trackGreen.Value)/255);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), ((float)colorpicker.trackBlue.Value)/255);
@@ -57,8 +59,23 @@ namespace DWext
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x24)), true);
                                     memory.ManageMemory.WriteMemory<bool>((gp + ((g_cpgi * 0x38) + 0x25)), false);
                                 }
-                                else
+                                else // player is an enemy
                                 {
+                                    if (colorpicker.checkHealthBasedE.Checked)
+                                    {
+                                        int entHealth = memory.ManageMemory.ReadMemory<int>(g_cp + netvars.m_iHealth); // get health/100
+                                        Console.WriteLine(entHealth);
+                                        g_e = (float)entHealth/100; // get percent that green needs to be ex health 70 -> 70/100 = .7
+                                        r_e = 1 - ((float)entHealth/100); // get percent red needs to be
+                                        b_e = 0;
+									}
+									else
+									{
+                                        r_e = ((float)colorpicker.trackRedEnemy.Value) / 255;
+                                        g_e = ((float)colorpicker.trackGreenEnemy.Value) / 255;
+                                        b_e = ((float)colorpicker.trackBlueEnemy.Value) / 255;
+                                    }
+                                    //Console.WriteLine($"rgb({(float)r_e},{(float)g_e},{(float)b_e})");
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x4)), r_e);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0x8)), g_e);
                                     memory.ManageMemory.WriteMemory<float>((gp + ((g_cpgi * 0x38) + 0xC)), b_e);
@@ -77,7 +94,7 @@ namespace DWext
                 {
                     waitHandle.WaitOne();
                 }
-                Thread.Sleep(5);
+                Thread.Sleep(0);
 
 
 		}

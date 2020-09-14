@@ -31,6 +31,8 @@
 			this.lblMain = new System.Windows.Forms.Label();
 			this.txtFOV = new System.Windows.Forms.TextBox();
 			this.pnlVis = new System.Windows.Forms.Panel();
+			this.button1 = new System.Windows.Forms.Button();
+			this.checkOverlay = new System.Windows.Forms.CheckBox();
 			this.checkChams = new System.Windows.Forms.CheckBox();
 			this.checkGlow = new System.Windows.Forms.CheckBox();
 			this.checkFlashRemoval = new System.Windows.Forms.CheckBox();
@@ -51,8 +53,6 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.lblStatus = new System.Windows.Forms.Label();
-			this.checkOverlay = new System.Windows.Forms.CheckBox();
-			this.button1 = new System.Windows.Forms.Button();
 			this.pnlVis.SuspendLayout();
 			this.pnlAim.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -111,6 +111,40 @@
 			this.pnlVis.TabIndex = 7;
 			this.pnlVis.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlVis_Paint);
 			this.pnlVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+			// 
+			// button1
+			// 
+			this.button1.BackColor = System.Drawing.Color.DimGray;
+			this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.button1.Image = global::DWext.Properties.Resources.btnGrad;
+			this.button1.Location = new System.Drawing.Point(183, 127);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(58, 23);
+			this.button1.TabIndex = 21;
+			this.button1.Text = "Colors";
+			this.button1.UseVisualStyleBackColor = false;
+			this.button1.Click += new System.EventHandler(this.button1_Click_2);
+			// 
+			// checkOverlay
+			// 
+			this.checkOverlay.AutoSize = true;
+			this.checkOverlay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkOverlay.FlatAppearance.BorderSize = 3;
+			this.checkOverlay.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.checkOverlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+			this.checkOverlay.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkOverlay.ForeColor = System.Drawing.SystemColors.ButtonFace;
+			this.checkOverlay.Location = new System.Drawing.Point(126, 37);
+			this.checkOverlay.Name = "checkOverlay";
+			this.checkOverlay.Size = new System.Drawing.Size(95, 19);
+			this.checkOverlay.TabIndex = 20;
+			this.checkOverlay.Text = "Overlay ESP ";
+			this.checkOverlay.UseCompatibleTextRendering = true;
+			this.checkOverlay.UseVisualStyleBackColor = true;
+			this.checkOverlay.CheckedChanged += new System.EventHandler(this.checkOverlay_CheckedChanged);
 			// 
 			// checkChams
 			// 
@@ -424,40 +458,6 @@
 			this.lblStatus.TabIndex = 13;
 			this.lblStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			// 
-			// checkOverlay
-			// 
-			this.checkOverlay.AutoSize = true;
-			this.checkOverlay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.checkOverlay.FlatAppearance.BorderSize = 3;
-			this.checkOverlay.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.checkOverlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-			this.checkOverlay.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkOverlay.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.checkOverlay.Location = new System.Drawing.Point(126, 37);
-			this.checkOverlay.Name = "checkOverlay";
-			this.checkOverlay.Size = new System.Drawing.Size(95, 19);
-			this.checkOverlay.TabIndex = 20;
-			this.checkOverlay.Text = "Overlay ESP ";
-			this.checkOverlay.UseCompatibleTextRendering = true;
-			this.checkOverlay.UseVisualStyleBackColor = true;
-			this.checkOverlay.CheckedChanged += new System.EventHandler(this.checkOverlay_CheckedChanged);
-			// 
-			// button1
-			// 
-			this.button1.BackColor = System.Drawing.Color.DimGray;
-			this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-			this.button1.Image = global::DWext.Properties.Resources.btnGrad;
-			this.button1.Location = new System.Drawing.Point(183, 127);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(58, 23);
-			this.button1.TabIndex = 21;
-			this.button1.Text = "Colors";
-			this.button1.UseVisualStyleBackColor = false;
-			this.button1.Click += new System.EventHandler(this.button1_Click_2);
-			// 
 			// menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +483,7 @@
 			this.Text = "DWext";
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.LocationChanged += new System.EventHandler(this.menu_LocationChanged);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
 			this.pnlVis.ResumeLayout(false);

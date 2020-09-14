@@ -278,7 +278,6 @@ namespace DWext
 			{
 				ReleaseCapture();
 				SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-				colorpickerform.Location = new Point(this.Location.X + 277, this.Location.Y);
 				
 			}
 		}
@@ -587,6 +586,11 @@ namespace DWext
 			{
 				colorpickerform.Hide();
 			}
+		}
+
+		private void menu_LocationChanged(object sender, EventArgs e)
+		{
+			colorpickerform.Location = new Point(this.Location.X + 277, this.Location.Y);
 		}
 	}
 }
